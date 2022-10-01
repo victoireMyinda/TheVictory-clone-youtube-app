@@ -60,14 +60,16 @@ const RecommendedVideos = () => {
   if (isError) {
     return (
       <Alert severity="error" className="alert alert-danger">
-        No Results found!
+        Recherche non trouvée
       </Alert>
     );
   }
   return (
     <div className="recommendedvideos">
       {isLoading ? (
-        <CircularProgress className="loading" color="secondary" />
+        <div className="d-flex justify-content-center">
+          <CircularProgress className="spinner text-info " role="status" />
+        </div>
       ) : null}
       <div className="recommendedvideos__videos">
         {videoCards.map((item) => {

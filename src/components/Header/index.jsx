@@ -1,28 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import VideoCallIcon from "@material-ui/icons/VideoCall";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Avatar from "@material-ui/core/Avatar";
+
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
 const Header = () => {
+  const [inputSearch, setInputSearch] = useState("");
+
   return (
     <div className="header">
       <div className="header__left">
         <MenuIcon />
-
-        <img
-          className="header__logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg"
-          alt=""
-        />
+        <Link to="/" className="text-decoration-none">
+          <span className="header__logo">TheVictory</span>
+        </Link>
       </div>
 
-      <div className="header__center">
-        <input type="text" />
-        <SearchIcon className="header__searchbutton" />
+      <div className="input-group d-flex justify-content-center ">
+        <div class="form-outline">
+          <input
+            type="search"
+            id="form1"
+            class="form-control"
+            placeholder="Search"
+            onChange={(e) => setInputSearch(e.target.value)}
+            value={inputSearch}
+          />
+        </div>
+        <Link to={`/search/${inputSearch}`}>
+          <button id="search-button" type="button" class="btn btn-primary">
+            <i className="fas fa-search header__searchbutton"></i>
+          </button>
+        </Link>
       </div>
 
       <div className="header__right">

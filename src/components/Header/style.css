@@ -10,23 +10,22 @@
 }
 
 .header__logo {
-    height: 25px;
-    object-fit: contain;
     margin-left: 10px;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    background: -webkit-linear-gradient(#000000, blue, black, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.header__center {
+.input-group {
     display: flex;
     align-items: center;
-    width: 40%;
-    border: 1px solid lightgray
+    width: 50%;
 }
 
-.header__searchbutton {
+.btn-primary {
     width: 50px !important;
-    border-color: #fafafa;
-    border-left: 1px solid lightgray;
-    color: gray;
     cursor: pointer;
 }
 
