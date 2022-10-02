@@ -1,6 +1,13 @@
 .videocard {
     width: 300px;
     margin-bottom: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.videocard:hover {
+    transform: scale(1.1);
+    background-color: #64CCDA;
 }
 
 .videocard__image {

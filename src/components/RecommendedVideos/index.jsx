@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import VideoCard from "../VideoCard";
-import "./style.css";
 import axios from "axios";
 import { DateTime } from "luxon";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
+
+import "./style.css";
 
 const RecommendedVideos = () => {
   const [videoCards, setVideoCards] = useState([]);
@@ -14,7 +16,7 @@ const RecommendedVideos = () => {
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=12&regionCode=US&key=AIzaSyC7zX5ODmBiwczi5xa3x99gIWilB7A7SJc`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=12&regionCode=US&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       )
       .then((response) => {
         console.log(response.data.items);
@@ -33,7 +35,7 @@ const RecommendedVideos = () => {
       const snippet = video.snippet;
       const channelId = snippet.channelId;
       const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=AIzaSyC7zX5ODmBiwczi5xa3x99gIWilB7A7SJc`
+        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       );
       const channelImage = response.data.items[0].snippet.thumbnails.medium.url;
 
@@ -74,15 +76,16 @@ const RecommendedVideos = () => {
       <div className="recommendedvideos__videos">
         {videoCards.map((item) => {
           return (
-            <VideoCard
-              key={item.videoId}
-              title={item.title}
-              image={item.image}
-              views={item.views}
-              timestamp={item.timestamp}
-              channel={item.channel}
-              channelImage={item.channelImage}
-            />
+            <Link key={item.videoId} to={`/video/${item.videoId}`}>
+              <VideoCard
+                title={item.title}
+                image={item.image}
+                views={item.views}
+                timestamp={item.timestamp}
+                channel={item.channel}
+                channelImage={item.channelImage}
+              />
+            </Link>
           );
         })}
       </div>

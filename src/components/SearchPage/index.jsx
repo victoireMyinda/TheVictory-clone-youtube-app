@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
+import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
 const SearchPage = (props) => {
@@ -24,7 +25,7 @@ const SearchPage = (props) => {
     setVideoRows([]);
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&q=${searchQuery}&safeSearch=none&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=channel&q=${searchQuery}&safeSearch=none&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       )
       .then((response) => {
         createChannelRow(response.data["items"][0]);
@@ -32,7 +33,7 @@ const SearchPage = (props) => {
 
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&type=video&q=${searchQuery}&safeSearch=none&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&type=video&q=${searchQuery}&safeSearch=none&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       )
       .then((response) => {
         createVideoRows(response.data["items"]);
@@ -48,7 +49,7 @@ const SearchPage = (props) => {
   async function createChannelRow(channel) {
     const channelId = channel.id.channelId;
     const response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=AIzaSyC7zX5ODmBiwczi5xa3x99gIWilB7A7SJc`
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
     );
     const noOfVideos = response.data.items[0].statistics.videoCount;
     const subs = response.data.items[0].statistics.subscriberCount;
@@ -71,7 +72,7 @@ const SearchPage = (props) => {
     for (const video of videos) {
       const videoId = video.id.videoId;
       const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/videos?part=statistics%2C%20snippet&id=${videoId}&key=AIzaSyC7zX5ODmBiwczi5xa3x99gIWilB7A7SJc`
+        `https://www.googleapis.com/youtube/v3/videos?part=statistics%2C%20snippet&id=${videoId}&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       );
       const views = response.data.items[0].statistics.viewCount;
       const snippet = video.snippet;
@@ -96,8 +97,8 @@ const SearchPage = (props) => {
   }
   if (isError) {
     return (
-      <Alert severity="error" className="alert alert-danger">
-        Recherche non trouvée. verifier votre connexion
+      <Alert severity="error" className="alert alert-danger" role="alert">
+        Recherche non trouvée
       </Alert>
     );
   }
@@ -105,7 +106,7 @@ const SearchPage = (props) => {
     <div className="searchpage">
       <div className="searchpage__filter">
         <TuneIcon />
-        <h2>Filter</h2>
+        <h2>Resultat</h2>
       </div>
       {isLoading ? (
         <div className="d-flex justify-content-center">
@@ -126,14 +127,16 @@ const SearchPage = (props) => {
       <hr />
       {videoRows.map((item) => {
         return (
-          <VideoRow
-            title={item.title}
-            image={item.image}
-            views={item.views}
-            timestamp={item.timestamp}
-            channel={item.channel}
-            description={item.description}
-          />
+          <Link key={item.videoId} to={`/video/${item.videoId}`}>
+            <VideoRow
+              title={item.title}
+              image={item.image}
+              views={item.views}
+              timestamp={item.timestamp}
+              channel={item.channel}
+              description={item.description}
+            />
+          </Link>
         );
       })}
     </div>

@@ -5,6 +5,7 @@ import VideoCallIcon from "@material-ui/icons/VideoCall";
 import AppsIcon from "@material-ui/icons/Apps";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Avatar from "@material-ui/core/Avatar";
+import SearchPage from "../SearchPage";
 
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
@@ -33,7 +34,12 @@ const Header = () => {
           />
         </div>
         <Link to={`/search/${inputSearch}`}>
-          <button id="search-button" type="button" class="btn btn-primary">
+          <button
+            id="search-button"
+            type="button"
+            class="btn btn-primary"
+            onClick={<SearchPage />}
+          >
             <i className="fas fa-search header__searchbutton"></i>
           </button>
         </Link>
