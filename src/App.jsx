@@ -3,31 +3,35 @@ import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import RecommendedVideos from "./components/RecommendedVideos";
 import SearchPage from "./components/SearchPage";
-import ErrorPage from "./pages/ErrorPage";
+//import ErrorPage from "./pages/ErrorPage";
+import VideoPlayer from "./components/VideoPLayer";
+import GoogleLogin from "./components/GoogleLogin";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/video/:videoId">
-            <div className="container">
+      <Routes>
+        <Route
+          path="/video/:videoId"
+          element={
+            <div className="container-fluid">
+              <Header />
               <div className="row">
-                <div className="col-8 bg-info">
-                  <h1>Video detail</h1>
-                </div>
-                <div className="col-4 bg-success">
-                  <h1>Video list detail</h1>
+                <div className="col-10">
+                  <VideoPlayer />
                 </div>
               </div>
             </div>
-          </Route>
+          }
+        />
 
-          <Route path="/search/:searchQuery">
+        <Route
+          path="/search/:searchQuery"
+          element={
             <div className="container-fluid">
+              <Header />
               <div className="row">
                 <div className="col-2">
                   <SideBar />
@@ -37,10 +41,15 @@ const App = () => {
                 </div>
               </div>
             </div>
-          </Route>
+          }
+        />
 
-          <Route path="/">
+        <Route
+          exact
+          path="/userAuth"
+          element={
             <div className="app__mainpage container-fluid">
+              <Header />
               <div className="row">
                 <div className="col-2">
                   <SideBar />
@@ -50,15 +59,29 @@ const App = () => {
                 </div>
               </div>
             </div>
-          </Route>
+          }
+        />
 
-          <Route path="*">
-            <div>
-              <ErrorPage />
+        <Route
+          exact
+          path="/"
+          element={
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-12 ">
+                  <GoogleLogin />
+                </div>
+              </div>
             </div>
-          </Route>
-        </Switch>
-      </Router>
+          }
+        />
+
+        {/* <Route path="*">
+          <div>
+            <ErrorPage />
+          </div>
+        </Route> */}
+      </Routes>
     </div>
   );
 };

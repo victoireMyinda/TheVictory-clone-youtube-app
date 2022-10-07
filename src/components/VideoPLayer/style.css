@@ -14,7 +14,8 @@
 
 .videoplayer__suggested {
     flex: 0.2;
-    margin-top: 0 !important;
+    margin-top: 35px !important;
+    width: 100% !important;
 }
 
 .videoplayer__videoinfo {

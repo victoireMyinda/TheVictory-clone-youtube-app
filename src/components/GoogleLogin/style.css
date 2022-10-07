@@ -1,0 +1,20 @@
+.all {
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.card-img-left {
+    width: 45%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
+}
+
+.card-title {
+    margin-left: 10px;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    background: -webkit-linear-gradient(#000000, blue, black, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

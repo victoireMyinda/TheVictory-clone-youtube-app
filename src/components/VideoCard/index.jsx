@@ -1,6 +1,7 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import "./style.css";
+import VideoPlayer from "../VideoPLayer";
 
 const VideoCard = ({
   image,
@@ -11,7 +12,7 @@ const VideoCard = ({
   channelImage,
 }) => {
   return (
-    <div className="videocard">
+    <div className="videocard" onClick={<VideoPlayer />}>
       <img className="videocard__image" src={image} alt="" />
       <div className="videocard__info">
         <Avatar

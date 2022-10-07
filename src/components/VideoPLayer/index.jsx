@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import Video from "../Video";
 import RecommendedVideos from "../RecommendedVideos";
 import VideoInfo from "../VideoInfo";
@@ -21,7 +21,7 @@ const VideoPlayer = () => {
     setIsLoading(true);
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&id=${videoId}&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I²`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet%2C%20statistics&id=${videoId}&key=AIzaSyAxYTdTGDlgbCAqKpQhTrVlpCN4l3Eyl0I`
       )
       .then((response) => {
         console.log(response.data);

@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import TuneIcon from "@material-ui/icons/Tune";
 import ChannelRow from "../ChannelRow";
 import VideoRow from "../VideoRow";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { DateTime } from "luxon";
-import { Link } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alert from "@material-ui/lab/Alert";
 
