@@ -1,6 +1,6 @@
 .all {
-    background: #007bff;
-    background: linear-gradient(to right, #0062E6, #33AEFF);
+    background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
+    background-size: cover;
 }
 
 .card-img-left {

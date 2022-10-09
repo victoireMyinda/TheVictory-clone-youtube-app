@@ -39,7 +39,7 @@ const SignIn = () => {
     );
   };
   const updateUser = (user) => {
-    //console.log(user.xc.access_token);
+    console.log(user.xc.access_token);
     localStorage.setItem("token", user.xc.access_token);
     Navigate("/userAuth");
   };
